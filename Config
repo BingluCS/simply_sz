@@ -1,0 +1,4 @@
+CC = gcc
+CXX = g++
+LIBDIR = ../lib
+CFLAGS = -I../include 
