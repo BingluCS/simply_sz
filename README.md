@@ -1,8 +1,8 @@
-# Simply_SZ2:
+# Simply_SZ:
 
 ## Introduction:
 
-SZ2 is a error-bounded lossy compressor based prediction model for HPC data. This project contains only the one-dimensional floating-point data compression procedure of SZ2 to help users understand the basic principles of SZ2.
+SZ is a error-bounded lossy compressor based prediction model for HPC data. This project contains only the one-dimensional floating-point data compression procedure of SZ2 to help users understand the basic principles of SZ2.
 
 
 
