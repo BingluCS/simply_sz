@@ -40,7 +40,7 @@ Furthermore, in order to convert quantization codes to unsigned integers, more s
 
 
 $$
-q_i=\frac{int(\frac{d_i-p_i}{e})+1\times sign}{2}+max\underline{~}q,\qquad {\rm where\ usually}\ max\underline{~}q=2^m-1, sign\ {\rm is\ the\ sign\ bit\ of}\ d_i-p_i
+q_i=\frac{int(\frac{d_i-p_i}{e})+1\times sign}{2}+max\_q,\qquad {\rm where\ usually}\ max\_q=2^m-1, sign\ {\rm is\ the\ sign\ bit\ of}\ d_i-p_i
 $$
 
 
@@ -50,14 +50,14 @@ The actual range of quantization code is as follows:
 
 
 
-|    Notation     | Description                                                  |
-| :-------------: | ------------------------------------------------------------ |
-|      $d_i$      | original data value at position $i$                          |
-|      $p_i$      | predicted value of $d_i$                                     |
-| $\widehat{d_i}$ | reconstructed data value after decompression                 |
-|       $e$       | specified error bound                                        |
-|    $max\underline{~}q$     | maximum quantization range (should be always set to an "even" number) |
-|      $q_i$      | quantization index                                           |
+|      Notation       | Description                                                  |
+| :-----------------: | ------------------------------------------------------------ |
+|        $d_i$        | original data value at position $i$                          |
+|        $p_i$        | predicted value of $d_i$                                     |
+|   $\widehat{d_i}$   | reconstructed data value after decompression                 |
+|         $e$         | specified error bound                                        |
+| $max\underline{~}q$ | maximum quantization range (should be always set to an "even" number) |
+|        $q_i$        | quantization index                                           |
 
 
 
