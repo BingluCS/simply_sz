@@ -38,7 +38,7 @@ q_i=\frac{int(\frac{d_i-p_i}{e})+1\times sign}{2}+max\_q,\qquad {\rm where\;usua
 $$
 The actual range of quantization code is as follows:
 
-<img src=".\quantization.png" alt="quantizaiton" style="width: 50%; height: auto;" />
+<img src=".\quantization.png" alt="quantizaiton" style="width: 40%; height: auto;" />
 
 
 
@@ -71,6 +71,6 @@ Although using $d_i-med$ for each value can obtain more accurate minimum number 
 
 In order to ensure error consistency, the current value should be predicted by the decompressed previous value, because the $\widehat{d_i}\ne d_i$. Therefore, the $prediction—quantization$ complete procedure is  as follows:
 
-<img src=".\procedure.png" alt="procedure" style="zoom:10%;" />
+<img src=".\procedure.png" alt="procedure" style="width: 70%; height: auto;" />
 
 ## Code Output:
