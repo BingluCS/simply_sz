@@ -31,9 +31,7 @@ SZ2 first predict current data according to the former data to have been travers
 The main function of quantizer is that turns floating-point errors between predicted values and original values into integers called quantization codes, and the calculating formula can be simplified as
 $$\acute{q_i}=\frac{d_i-p_i}{2 \times e}$$
 Furthermore, in order to convert quantization codes to unsigned integers, more strict formula is 
-$$
-q_i=\frac{int(\frac{d_i-p_i}{e})+1\times sign}{2}+max\_q,\qquad {\rm where\;usually}\;max\_q=2^m-1, sign\;{\rm is\; the\;sign\;bit\;of\;} d_i-p_i
-$$
+$$q_i=\frac{int(\frac{d_i-p_i}{e})+1\times sign}{2}+max\_q,\qquad {\rm where\;usually}\;max\_q=2^m-1, sign\;{\rm is\; the\;sign\;bit\;of\;} d_i-p_i$$
 The actual range of quantization code is as follows:
 
 <img src=".\quantization.png" alt="quantizaiton" style="width: 40%; height: auto;" />
@@ -46,7 +44,7 @@ The actual range of quantization code is as follows:
 |      $p_i$      | predicted value of $d_i$                                     |
 | $\widehat{d_i}$ | reconstructed data value after decompression                 |
 |       $e$       | specified error bound                                        |
-|    ![](http://latex.codecogs.com/gif.latex?$max\_q$)     | maximum quantization range(should be always set to an "even" number) |
+|   $max\_q$)     | maximum quantization range(should be always set to an "even" number) |
 |      $q_i$      | quantization index                                           |
 
 
