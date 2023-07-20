@@ -38,7 +38,7 @@ q_i=\frac{int(\frac{d_i-p_i}{e})+1\times sign}{2}+max\_q,\qquad {\rm where\;usua
 $$
 The actual range of quantization code is as follows:
 
-<img src=".\quantization.png" alt="quantizaiton" style="width: 50%; height: auto;" />
+<img src=".\quantization.png" alt="quantizaiton" style="width: 20%; height: auto;" />
 
 
 
