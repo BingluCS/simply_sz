@@ -1,7 +1,7 @@
 include ../Config
 
 OBJECTS = rw.o sz.o sz_float.o dataCompression.o ByteToolkit.o DynamicByteArray.o DynamicIntArray.o CompressElement.o \
- TightDataPointStorageF.o conf.o
+ TightDataPointStorageF.o conf.o TypeManager.o
 TARGETS = $(LIBDIR)/libsz.a 
 		
 

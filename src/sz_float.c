@@ -11,7 +11,7 @@
 #include "conf.h"
 #include <string.h>
 #include <math.h>
-
+#include <stdio.h>
 void computeReqLength_float(double realPrecision, short radExpo, int* reqLength, float* medianValue)
 {
 	short reqExpo = getPrecisionReqLength_double(realPrecision);
@@ -83,8 +83,12 @@ int errBoundMode, double absErr_Bound, double relBoundRatio, double pwRelBoundRa
 
 	size_t tmpOutSize = 0;
 	unsigned char* tmpByteData;
-	double realPrecision = confparams_cpr->absErrBound;
-
+	double realPrecision;// = confparams_cpr->absErrBound;
+	//realPrecision = getRealPrecision_float(valueRangeSize, errBoundMode, absErr_Bound, relBoundRatio);
+	if(confparams_cpr->errorBoundMode=ABS)
+		realPrecision=confparams_cpr->absErrBound;
+	else realPrecision=confparams_cpr->relBoundRatio*valueRangeSize;
+	//printf("%lf %lf\n",valueRangeSize,confparams_cpr->relBoundRatio);
 	SZ_compress_args_float_NoCkRngeNoGzip_1D(cmprType, &tmpByteData, oriData, r1, realPrecision, &tmpOutSize, valueRangeSize, medianValue);
 	//printf("%f %f\n",min,max);
 	// if(confparams_cpr->errorBoundMode==ABS) {
@@ -134,7 +138,7 @@ size_t dataLength, double realPrecision, float valueRangeSize, float medianValue
 	DynamicByteArray *exactMidByteArray;// the different bytes
 	new_DBA(&exactMidByteArray, DynArrayInitLen);
 
-	DynamicIntArray *resiBitArray;// the remaining bits
+	DynamicIntArray *resiBitArray;// the remaining bits array of each unpredictable value 
 	new_DIA(&resiBitArray, DynArrayInitLen);
 
 	unsigned char preDataBytes[4];
@@ -221,16 +225,35 @@ size_t dataLength, double realPrecision, float valueRangeSize, float medianValue
 	}//end of for
 
 	size_t exactDataNum = exactLeadNumArray->size;
+	size_t resiBitNum = resiBitArray->size;	
+	size_t exactMidByteNum = exactMidByteArray->size;
 	TightDataPointStorageF* tdps;
-
+	{	if(filename!=NULL) {
+		FILE* fptr = fopen(filename, "w");
+			for(i=0;i<exactDataNum;i++) {
+				fprintf(fptr, "The number of the %luth same byte:%d\n",i,exactLeadNumArray->array[i]);
+			}
+			for(i=0;i<resiBitNum;i++) {
+				fprintf(fptr, "The %luth remaining bits:%x\n",i,resiBitArray->array[i]);
+			}
+			for(i=0;i<exactMidByteNum;i++) {
+				fprintf(fptr, "The %luth different bytes:%x\n",i,exactMidByteArray->array[i]);
+			}
+			for(i=0;i<dataLength;i++) {
+				fprintf(fptr, "The %luth type:%d\n",i,type[i]);
+			}
+		}
+	}
+	
+	//further compression
 	new_TightDataPointStorageF(&tdps, dataLength, exactDataNum,
-		type, exactMidByteArray->array, exactMidByteArray->size,
-		exactLeadNumArray->array,
-		resiBitArray->array, resiBitArray->size,
+		type, exactMidByteArray->array, exactMidByteArray->size,// same byte
+		exactLeadNumArray->array,// the number of same byte
+		resiBitArray->array, resiBitArray->size,// th remaining bits
 		resiBitsLength,
 		realPrecision, medianValue, (char)reqLength, quantization_intervals, NULL, 0, 0);
-	for(i=0;i<20;i++)
-		printf("%d %d\n",i,type[i]);
+
+
 	free_DIA(exactLeadNumArray);
 	free_DIA(resiBitArray);
 	free(type);

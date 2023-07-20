@@ -101,7 +101,7 @@ typedef struct sz_exedata
 	unsigned int SZ_SIZE_TYPE; //the length (# bytes) of the size_t in the system at runtime //4 or 8: sizeof(size_t)
 } sz_exedata;
 
-void Init_sz();
+void Init_sz(size_t quant_intervals,size_t max_quant);
 unsigned char* SZ_compress(int dataType, void *data, size_t *outSize, size_t r5, size_t r4, size_t r3, size_t r2, size_t r1);
 
 unsigned char* SZ_compress_args(int dataType, void *data, size_t *outSize, int errBoundMode, double absErrBound,
@@ -109,6 +109,7 @@ double relBoundRatio, double pwrBoundRatio, size_t r5, size_t r4, size_t r3, siz
 
 extern sz_params *confparams_cpr;
 extern sz_exedata *exe_params;
+extern char* filename;
 
 #ifdef __cplusplus
 }

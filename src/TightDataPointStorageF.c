@@ -1,6 +1,7 @@
 #include "TightDataPointStorageF.h"
 #include "defines.h"
 #include "sz.h"
+#include "TypeManager.h"
 #include <stdlib.h>
 void new_TightDataPointStorageF(TightDataPointStorageF **this_,
 		size_t dataSeriesLength, size_t exactDataNum, 
@@ -33,10 +34,10 @@ void new_TightDataPointStorageF(TightDataPointStorageF **this_,
 		
 	(*this_)->exactMidBytes = exactMidBytes;
 	(*this_)->exactMidBytes_size = exactMidBytes_size;
+	//futher compression the number of same bytes
+	(*this_)->leadNumArray_size = convertIntArray2ByteArray_fast_2b(leadNumIntArray, exactDataNum, &((*this_)->leadNumArray));
 
-	// (*this_)->leadNumArray_size = convertIntArray2ByteArray_fast_2b(leadNumIntArray, exactDataNum, &((*this_)->leadNumArray));
-
-	// (*this_)->residualMidBits_size = convertIntArray2ByteArray_fast_dynamic(resiMidBits, resiBitLength, exactDataNum, &((*this_)->residualMidBits));
+	(*this_)->residualMidBits_size = convertIntArray2ByteArray_fast_dynamic(resiMidBits, resiBitLength, exactDataNum, &((*this_)->residualMidBits));
 	
 	(*this_)->intervals = intervals;
 	

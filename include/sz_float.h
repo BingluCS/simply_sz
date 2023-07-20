@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include "TightDataPointStorageF.h"
 
-
 void computeReqLength_float(double realPrecision, short radExpo, int* reqLength, float* medianValue);
 unsigned int optimize_intervals_float_1D_opt(float *oriData, size_t dataLength, double realPrecision);
 int SZ_compress_args_float(int cmprType, int withRegression, unsigned char** newByteData, float *oriData, 
@@ -15,7 +14,7 @@ size_t dataLength, double realPrecision, size_t *outSize, float valueRangeSize, 
 
 TightDataPointStorageF* SZ_compress_float_1D_MDQ(float *oriData, 
 size_t dataLength, double realPrecision, float valueRangeSize, float medianValue_f);
-
+extern TightDataPointStorageF* tdps;
 // unsigned char * SZ_compress_float_3D_MDQ_nonblocked_with_blocked_regression(float *oriData,size_t r1,
 //  size_t r2, size_t r3, float realPrecision, size_t * comp_size);
 
