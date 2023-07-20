@@ -2,7 +2,7 @@
 
 ## Introduction:
 
-SZ2 is a error-bounded lossy compressor based prediction model for HPC data. This project involves only the prediction and quantization procedure of  one-dimensional floating-point data in compression to help users understand the fundamental of SZ2.
+SZ2 is an error-bounded lossy compressor based prediction model for HPC data. This project involves only the prediction and quantization procedure of  one-dimensional floating-point data in compression to help users understand the fundamental of SZ2.
 
 
 
@@ -14,9 +14,9 @@ make
 
 ## Testing Examples
 
-Example data file can be found in the [INSTALL_DIR]/data
+Example data file can be found in the [INSTALL_DIR]/examples
 
-./sz -i testfloat_8_8_128.dat 8192
+./sz -i ../examples/testfloat_8_8_128.dat  -1 8192 -M REL -R 0.001 -p output
 
 
 
@@ -24,7 +24,7 @@ Example data file can be found in the [INSTALL_DIR]/data
 
 ### Prediction:
 
-SZ2 first predict current data according to the former data to have been traversed. The predicted value $p_i$ corresponds to original data value at position $i$. The predicters in SZ2 contain both Lorenzo and linear regression predictions, where one-dimensional Lorenzo prediction simply treat the previous data as the predicted value of the current data, i.e., $p_i=d_{i-1}$.
+SZ2 first predicts current data according to the former data to have been traversed. The predicted value $p_i$ corresponds to original data value at position $i$. The predicters in SZ2 contain both Lorenzo and linear regression predictions, where one-dimensional Lorenzo prediction simply treats the previous data as the predicted value of the current data, i.e., $p_i=d_{i-1}$.
 
 ### Quantization:
 
@@ -36,7 +36,7 @@ $$
 $$
 
 
-Furthermore, in order to convert quantization codes to unsigned integers, more strict formula is 
+Furthermore, in order to convert quantization codes to unsigned integers, a more strict formula is 
 
 
 $$
@@ -61,9 +61,9 @@ The actual range of quantization code is as follows:
 
 
 
-If the $q_i$ is better than $max\underline{}q$, the original data is marked as unpredictable data. Additionally, the $q_i$ is limited to $[1,max \underline{} q)$ by processing, and the quantization code $q_i=0$ represents the unpredictable data. Usually, the total number of quantization codes is $max\underline{~}q$. 
+If the $q_i$ is better than $max\underline{}q$, the original data is marked as unpredictable data. Additionally, the $q_i$ is limited to $\[1,max \underline{} q\)$ by processing, and the quantization code $q_i=0$ represents the unpredictable data. Usually, the total number of quantization codes is $max\underline{~}q$. 
 
-The unpredictable data is only remained the significant bits by analysis of binary representation.
+The unpredictable data only remained the significant bits by analysis of binary representation.
 
 #### Analysis of binary representation:
 
@@ -74,7 +74,7 @@ $1.1001000_{(2)}... \times 2^6$ and $1.00001100_{(2)}... \times 2^{−10}$ numbe
 
 Although using $d_i-med$ for each value can obtain more accurate minimum number of required mantissa bits, the final sequence of the compressed bits for different normalized values $d_i-med$ will likely have different lengths, such that we cannot recover the normalized values based on the mixed sequence of bits. In SZ, using $radius$  computes the required mantissa bits for each value to fix the number of bits required. $(radius=(max(d_i)-min(d_i))/2 \ge d_i-med)$
 
-
+Unpredictable values that are truncated certain tails, called binary processed values, will be further compressed to minimize the sizes. The main measure is to byte-match the truncated tails with the previous truncated tails, which generates three arrays representing the number of bytes that are the same as the previous binary processed value, the bytes that are different from the previous binary left over, and the remaining bits (the number of bits in the binary processed value is not always divisible by one byte or eight bits). 
 
 ### Tips
 
@@ -82,4 +82,16 @@ In order to ensure error consistency, the current value should be predicted by t
 
 <img src=".\procedure.png" alt="procedure" style="width: 45%; height: auto;" />
 
-## Code Output:
+The outcome after binary representation will be further compression by squeezing the bit. Specifically, the recorder of the number of same bytes is stored in Byte format(8 bits). However, Up to 4 bytes per floating point number, this same number of bytes requires only 2 bits,  which means a byte can represent 4 numbers. Additionally, the remaining bits also not required a full byte.
+
+## Code Output
+
+### Predictable values
+
+1. type: the quantization codes of every data.
+
+### Unpredictable values:
+
+1. exactLeadNumArray->array: the numbers of same bytes of each unpredictable value as the previous unpredictable value.
+2. exactMidByteArray->array: the different bytes.
+3. resiBitArray->array: the remaining bits array of each unpredictable value.
