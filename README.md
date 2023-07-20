@@ -71,6 +71,6 @@ Although using $d_i-med$ for each value can obtain more accurate minimum number 
 
 In order to ensure error consistency, the current value should be predicted by the decompressed previous value, because the $\widehat{d_i}\ne d_i$. Therefore, the $prediction—quantization$ complete procedure is  as follows:
 
-<img src=".\procedure.png" alt="procedure" style="width: 70%; height: auto;" />
+<img src=".\procedure.png" alt="procedure" style="width: 45%; height: auto;" />
 
 ## Code Output:
