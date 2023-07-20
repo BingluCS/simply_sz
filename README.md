@@ -61,7 +61,7 @@ The actual range of quantization code is as follows:
 
 
 
-If the $q_i$ is better than $max\underline{~}q$, the original data is marked as unpredictable data. Additionally, the $q_i$ is limited to $[1,max\underline{~}q)$ by processing, and the quantization code $q_i=0$ represents the unpredictable data. Usually, the total number of quantization codes is $max\underline{~}q$. 
+If the $q_i$ is better than $max\underline{~}q$, the original data is marked as unpredictable data. Additionally, the $q_i$ is limited to $\[1,max \underline{~} q\)$ by processing, and the quantization code $q_i=0$ represents the unpredictable data. Usually, the total number of quantization codes is $max\underline{~}q$. 
 
 The unpredictable data is only remained the significant bits by analysis of binary representation.
 
