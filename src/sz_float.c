@@ -223,12 +223,12 @@ size_t dataLength, double realPrecision, float valueRangeSize, float medianValue
 	size_t exactDataNum = exactLeadNumArray->size;
 	TightDataPointStorageF* tdps;
 
-	// new_TightDataPointStorageF(&tdps, dataLength, exactDataNum,
-	// 	type, exactMidByteArray->array, exactMidByteArray->size,
-	// 	exactLeadNumArray->array,
-	// 	resiBitArray->array, resiBitArray->size,
-	// 	resiBitsLength,
-	// 	realPrecision, medianValue, (char)reqLength, quantization_intervals, NULL, 0, 0);
+	new_TightDataPointStorageF(&tdps, dataLength, exactDataNum,
+		type, exactMidByteArray->array, exactMidByteArray->size,
+		exactLeadNumArray->array,
+		resiBitArray->array, resiBitArray->size,
+		resiBitsLength,
+		realPrecision, medianValue, (char)reqLength, quantization_intervals, NULL, 0, 0);
 	for(i=0;i<20;i++)
 		printf("%d %d\n",i,type[i]);
 	free_DIA(exactLeadNumArray);

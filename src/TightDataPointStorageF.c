@@ -1,4 +1,6 @@
 #include "TightDataPointStorageF.h"
+#include "defines.h"
+#include "sz.h"
 #include <stdlib.h>
 void new_TightDataPointStorageF(TightDataPointStorageF **this_,
 		size_t dataSeriesLength, size_t exactDataNum, 
@@ -22,34 +24,30 @@ void new_TightDataPointStorageF(TightDataPointStorageF **this_,
 	(*this_)->rtypeArray_size = 0;
 
 	int stateNum = 2*intervals;
-// 	HuffmanTree* huffmanTree = createHuffmanTree(stateNum);
-// 	if(confparams_cpr->errorBoundMode == PW_REL && confparams_cpr->accelerate_pw_rel_compression)
-// 		(*this_)->max_bits = encode_withTree_MSST19(huffmanTree, type, dataSeriesLength, &(*this_)->typeArray, &(*this_)->typeArray_size);
-// 	else
-// 		encode_withTree(huffmanTree, type, dataSeriesLength, &(*this_)->typeArray, &(*this_)->typeArray_size);
-// 	SZ_ReleaseHuffman(huffmanTree);
-// #if HAVE_WRITESTATS
-//     //update only the dataSeriesLength, the rest are set in encode_withTree
-//     writeHuffmanInfo(sz_stat.huffmanTreeSize, sz_stat.huffmanCodingSize, sizeof(float)*dataSeriesLength, sz_stat.huffmanNodeCount);
-// #endif
+	// HuffmanTree* huffmanTree = createHuffmanTree(stateNum);
+	// if(confparams_cpr->errorBoundMode == PW_REL && confparams_cpr->accelerate_pw_rel_compression)
+	// 	(*this_)->max_bits = encode_withTree_MSST19(huffmanTree, type, dataSeriesLength, &(*this_)->typeArray, &(*this_)->typeArray_size);
+	// else
+	// 	encode_withTree(huffmanTree, type, dataSeriesLength, &(*this_)->typeArray, &(*this_)->typeArray_size);
+	// SZ_ReleaseHuffman(huffmanTree);
 		
-// 	(*this_)->exactMidBytes = exactMidBytes;
-// 	(*this_)->exactMidBytes_size = exactMidBytes_size;
+	(*this_)->exactMidBytes = exactMidBytes;
+	(*this_)->exactMidBytes_size = exactMidBytes_size;
 
-// 	(*this_)->leadNumArray_size = convertIntArray2ByteArray_fast_2b(leadNumIntArray, exactDataNum, &((*this_)->leadNumArray));
+	// (*this_)->leadNumArray_size = convertIntArray2ByteArray_fast_2b(leadNumIntArray, exactDataNum, &((*this_)->leadNumArray));
 
-// 	(*this_)->residualMidBits_size = convertIntArray2ByteArray_fast_dynamic(resiMidBits, resiBitLength, exactDataNum, &((*this_)->residualMidBits));
+	// (*this_)->residualMidBits_size = convertIntArray2ByteArray_fast_dynamic(resiMidBits, resiBitLength, exactDataNum, &((*this_)->residualMidBits));
 	
-// 	(*this_)->intervals = intervals;
+	(*this_)->intervals = intervals;
 	
-// 	(*this_)->isLossless = 0;
+	(*this_)->isLossless = 0;
 	
-// 	if(confparams_cpr->errorBoundMode>=PW_REL)
-// 		(*this_)->pwrErrBoundBytes = pwrErrBoundBytes;
-// 	else
-// 		(*this_)->pwrErrBoundBytes = NULL;
+	if(confparams_cpr->errorBoundMode>=PW_REL)
+		(*this_)->pwrErrBoundBytes = pwrErrBoundBytes;
+	else
+		(*this_)->pwrErrBoundBytes = NULL;
 		
-// 	(*this_)->radExpo = radExpo;
+	(*this_)->radExpo = radExpo;
 	
-// 	(*this_)->pwrErrBoundBytes_size = pwrErrBoundBytes_size;
+	(*this_)->pwrErrBoundBytes_size = pwrErrBoundBytes_size;
 }
