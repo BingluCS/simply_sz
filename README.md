@@ -35,10 +35,10 @@ $$
 $$
 
 Furthermore, in order to convert quantization codes to unsigned integers, more strict formula is 
+
 $$
 q_i=\frac{int(\frac{d_i-p_i}{e})+1\times sign}{2}+max\_q,\qquad {\rm where\ usually}\ max\_q=2^m-1, sign\ {\rm is\ the\\; sign\ bit\ of}\ d_i-p_i
 $$
-
 The actual range of quantization code is as follows:
 
 <img src=".\quantization.png" alt="quantizaiton" style="width: 40%; height: auto;" />
