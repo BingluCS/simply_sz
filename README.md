@@ -24,7 +24,7 @@ Example data file can be found in the [INSTALL_DIR]/data
 
 ### Prediction:
 
-SZ2 first predict current data according to the former data to have been traversed. The predicted value $p_i$ corresponds to original data value at position $i$. The predicters in SZ2 contain both Lorenzo and linear regression predictions, where one-dimensional Lorenzo prediction simply treat the previous data as the predicted value of the current data, i.e., $p_i$=$d_{i-1}$.
+SZ2 first predict current data according to the former data to have been traversed. The predicted value $p_i$ corresponds to original data value at position $i$. The predicters in SZ2 contain both Lorenzo and linear regression predictions, where one-dimensional Lorenzo prediction simply treat the previous data as the predicted value of the current data, i.e., $p_i=d_{i-1}$.
 
 ### Quantization:
 
