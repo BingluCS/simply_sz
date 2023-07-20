@@ -58,7 +58,7 @@ The unpredictable data is only remained the significant bits by analysis of bina
 First, map all of the unpredictable data to a smaller range by letting all the values minus the median value of the range (denote by $med$, i.e., $med=(max(d_i)+min(d_i))/2$. Such a step is motivated by the fact that the closer the number is to zero, the less mantissa bits are required to meet the specified precision.
 
 Second, SZ2 truncates the value by disregarding the insignificant mantissa part based on the user-required error bound. For instance, supposing the absolute error bound $e=1.22 \times 10^{-4}(i.e.,2^{-12})$, if there are both
-$1.10010000.._{(2)} \times 2^6$ and $1.00001100..._{(2)} \times 2^{−10}$ numbers,  then the leading mantissa bits for the two numbers are supposed to be no less than $6−(−12)=18$ bits and $−10−(−12)=2$ bits respectively. Obviously, the latter requires much less bits to meet the required precision.
+$1.1001000_{(2)}... \times 2^6$ and $1.00001100_{(2)}... \times 2^{−10}$ numbers,  then the leading mantissa bits for the two numbers are supposed to be no less than $6−(−12)=18$ bits and $−10−(−12)=2$ bits respectively. Obviously, the latter requires much less bits to meet the required precision.
 
 Although using $d_i-med$ for each value can obtain more accurate minimum number of required mantissa bits, the final sequence of the compressed bits for different normalized values $d_i-med$ will likely have different lengths, such that we cannot recover the normalized values based on the mixed sequence of bits. In SZ, using $radius$  computes the required mantissa bits for each value to fix the number of bits required. $(radius=(max(d_i)-min(d_i))/2 \ge d_i-med)$
 
