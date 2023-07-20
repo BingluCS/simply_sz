@@ -48,7 +48,7 @@ The actual range of quantization code is as follows:
 |      $p_i$      | predicted value of $d_i$                                     |
 | $\widehat{d_i}$ | reconstructed data value after decompression                 |
 |       $e$       | specified error bound                                        |
-|    $max\_q$     | maximum quantization range(should be always set to an "even" number) |
+|    ![](http://latex.codecogs.com/gif.latex?$max\_q$)     | maximum quantization range(should be always set to an "even" number) |
 |      $q_i$      | quantization index                                           |
 
 
