@@ -40,7 +40,7 @@ Furthermore, in order to convert quantization codes to unsigned integers, more s
 
 
 $$
-q_i=\frac{int(\frac{d_i-p_i}{e})+1\times sign}{2}+max\_q,\qquad {\rm where\ usually}\ max\_q=2^m-1, sign\ {\rm is\ the\ sign\ bit\ of}\ d_i-p_i
+q_i=\frac{int(\frac{d_i-p_i}{e})+1\times sign}{2}+max\underline{~}q,\qquad {\rm where\ usually}\ max\_q=2^m-1, sign\ {\rm is\ the\ sign\ bit\ of}\ d_i-p_i
 $$
 
 
