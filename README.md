@@ -16,7 +16,7 @@ make
 
 Example data file can be found in the [INSTALL_DIR]/data
 
-./sz -i testfloat_8_8_128.dat 8192 $dada_2$
+./sz -i testfloat_8_8_128.dat 8192 $dada\_2$
 
 
 
